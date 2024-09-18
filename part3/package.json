@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "json-server -p3001 --watch db.json",
-    "build:ui": "@powershell Remove-Item -Recurse -Force dist && cd ../part3 && npm run build && @powershell Copy-Item dist -Recurse ../part4",
+    "build:ui": "rm -rf dist && cd ../part3 && npm run build && cp -r dist ../part4",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
   },
   "dependencies": {
