@@ -8,6 +8,6 @@ const Note = ({ note, toggleImportance }) => {
 		<button onClick={toggleImportance}>{label}</button>
 	  </li>
 	)
-}
+  }
   
-export default Note
+  export default Note
