@@ -1,4 +1,4 @@
-import { useState, useEffect, usaRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Note from './components/Note'
 import Notification from './components/Notification'
 import Footer from './components/Footer'
@@ -7,6 +7,7 @@ import loginService from './services/login'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 import NoteForm from './components/NoteForm'
+import PropTypes from 'prop-types'
 
 const App = () => {
   const [notes, setNotes] = useState([])
@@ -39,7 +40,7 @@ const App = () => {
     noteFormRef.current.toggleVisibility()
     noteService
       .create(noteObject)
-        .then(returnedNote => {
+      .then(returnedNote => {
         setNotes(notes.concat(returnedNote))
         setNewNote('')
       })
@@ -48,10 +49,10 @@ const App = () => {
   const toggleImportanceOf = id => {
     const note = notes.find(n => n.id === id)
     const changedNote = { ...note, important: !note.important }
-  
+
     noteService
       .update(id, changedNote)
-        .then(returnedNote => {
+      .then(returnedNote => {
         setNotes(notes.map(note => note.id !== id ? note : returnedNote))
       })
       .catch(error => {
@@ -77,7 +78,7 @@ const App = () => {
       })
       window.localStorage.setItem(
         'loggedNoteappUser', JSON.stringify(user)
-      ) 
+      )
       noteService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -97,7 +98,7 @@ const App = () => {
   const loginForm = () => {
     const hideWhenVisible = { display: loginVisible ? 'none' : '' }
     const showWhenVisible = { display: loginVisible ? '' : 'none' }
-  
+
     return (
       <div>
         <div style={hideWhenVisible}>
@@ -126,20 +127,20 @@ const App = () => {
 
       {!user && loginForm()}
       {user && <div>
-       <p>{user.name} logged in</p>
-      <Togglable buttonLabel="new note" ref={noteFormRef}>
-        <NoteForm createNote={addNote} />
-      </Togglable>
+        <p>{user.name} logged in</p>
+        <Togglable buttonLabel="new note" ref={noteFormRef}>
+          <NoteForm createNote={addNote} />
+        </Togglable>
       </div>
-     } 
+      }
 
       <div>
         <button onClick={() => setShowAll(!showAll)}>
           show {showAll ? 'important' : 'all' }
         </button>
-      </div>      
+      </div>
       <ul>
-        {notesToShow.map(note => 
+        {notesToShow.map(note =>
           <Note
             key={note.id}
             note={note}
