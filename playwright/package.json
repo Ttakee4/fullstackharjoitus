@@ -1,0 +1,26 @@
+{
+  "name": "fullstack-testi",
+  "version": "1.0.0",
+  "description": "Harjoitusrepo",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:report": "playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ttakee4/fullstackharjoitus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ttakee4/fullstackharjoitus/issues"
+  },
+  "homepage": "https://github.com/Ttakee4/fullstackharjoitus#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.2"
+  }
+}
